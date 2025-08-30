@@ -18,12 +18,15 @@ while True:
     elif user_choice == "a":
         product_name = input("name: ")
         product_weight = int(input("weight: "))
-        inventory.update({product_name:product_weight})
-        print(f"\n{product_name} added succesfuly")
+        if product_name in inventory:
+            inventory[product_name] += product_weight
+        else:
+            inventory.update({product_name:product_weight})
+            print(f"\n{product_name} added succesfuly")
     elif user_choice == "d":
         product_name = input("product to delete([c]ancel): ")
         if product_name == "c":
-           continue 
+            continue 
         if product_name in inventory:
             inventory.pop(product_name)
             print(f"{product_name} deleted succesfuly")
