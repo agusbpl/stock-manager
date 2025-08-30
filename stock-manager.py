@@ -6,20 +6,23 @@ print("\n\nplease select one of the following options to start the stock-managem
 inventory = {}
 
 
-options = ("\n[a]dd","[d]elete","[s]how inventory","[c]ancel")
+options = ("\n[a]dd","[d]elete","[s]how inventory","[e]xit")
 
 while True:
     for opt in options:
         print(opt)
     user_choice = input("\nyour selection: ")
-    if not (user_choice in ["a","d","s","c"]):
+    if not (user_choice in ["a","d","s","e"]):
         print("invalid response")
         exit(1)
     elif user_choice == "a":
         product_name = input("name: ")
-        product_weight = int(input("weight: "))
+        product_wei = ""
+        while (not product_wei.isdigit()):
+            product_wei= input("weight: ")
+        product_weight = int(product_wei)
         if product_name in inventory:
-            inventory[product_name] += product_weight
+            inventory[product_name] += int(product_weight)
         else:
             inventory.update({product_name:product_weight})
             print(f"\n{product_name} added succesfuly")
