@@ -6,26 +6,29 @@ print("\n\nplease select one of the following options to start the stock-managem
 inventory = {}
 
 
-options = ("[a]dd","[d]elete","[s]how inventory","[c]ancel")
+options = ("\n[a]dd","[d]elete","[s]how inventory","[c]ancel")
 
 while True:
     for opt in options:
         print(opt)
-    user_choice = input("your selection: ")
+    user_choice = input("\nyour selection: ")
     if not (user_choice in ["a","d","s","c"]):
         print("invalid response")
         exit(1)
     elif user_choice == "a":
         product_name = input("name: ")
-        product_weight = input("weight: ")
+        product_weight = int(input("weight: "))
         inventory.update({product_name:product_weight})
-        print("adding ...")
+        print(f"\n{product_name} added succesfuly")
     elif user_choice == "d":
-        print("deleting ...")
+        product_name = input("producto a eliminar: ")
+        inventory.pop({product_name})
+        print(f"{product_name} deleted succesfuly")
     elif user_choice == "s":
-        print("showing inventory")
-        for num,prod in enumerate(inventory):
-            print(f"    {num + 1}.{prod}")
+        print("\nshowing inventory")
+        for num,(prod_name,prod_weight) in enumerate(inventory.items()):
+            print(f"    {num + 1}. {prod_name} {prod_weight/ 1000} kg")
     else:
         print("exiting")
         exit(1)
+        
